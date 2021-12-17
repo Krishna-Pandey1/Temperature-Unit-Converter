@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            padding: 50px 100px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #container {
+            text-align: center;
+            background-color: #1abc9c;
+            padding: 50px;
+        }
+
+        .input-div {
+            display: inline-block;
+        }
+
+        .inp {
+            padding: 5px 10px;
+            margin: 10px;
+            font-size: 30px;
+            font-weight: bold;
+            width: 250px;
+            text-align: center;
+        }
+
+        label {
+            font-size: 22px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Temperature Converter</h1>
+    <div id="container">
+        <div class="input-div">
+            <label>Celsius</label><br>
+            <input type="number" value="0" id="cel" class="inp">
+        </div>
+        <div class="input-div">
+            <label>Fahrenheit</label><br>
+            <input type="number" value="32" id="fah" class="inp">
+        </div>
+        <div class="input-div">
+            <label>Kelvin</label><br>
+            <input type="number" value="273.15" id="kel" class="inp">
+        </div>
+
+    </div>
+    <script>
+        var celc = document.getElementById("cel");
+        var far = document.getElementById("fah");
+        var kelv = document.getElementById("kel");
+
+        celc.addEventListener('input', function () {
+            var c = this.value;
+            
+            var f = (c * 9 / 5) + 32;
+            if (!Number.isInteger(f)) {
+                f = f.toFixed(4);
+            }
+            far.value = f;
+
+            var celciusTOfahren = (parseInt(c) + 273.15);
+            if (!Number.isInteger(celciusTOfahren)) {
+                celciusTOfahren = celciusTOfahren.toFixed(4);
+            }
+            kelv.value = celciusTOfahren;
+
+        })
+
+        far.addEventListener('input', function () {
+            var f = this.value;
+            var fTOc = (f - 32) * 5 / 9;
+            if (!Number.isInteger(fTOc)) {
+                fTOc = fTOc.toFixed(4);
+            }
+            celc.value = fTOc;
+
+            var fTOkel = (f - 32) * 5 / 9 + 273.15;
+            if (!Number.isInteger(fTOkel)) {
+                fTOkel = fTOkel.toFixed(4);
+            }
+            kelv.value = fTOkel;
+        })
+
+        kelv.addEventListener('input', function () {
+            var k = this.value;
+            var kelvTOcel = k - 273.15;
+            if (!Number.isInteger(kelvTOcel)) {
+                kelvTOcel = kelvTOcel.toFixed(4);
+            }
+            celc.value = kelvTOcel;
+
+            var kelvTOfah = (k - 273.15) * 9 / 5 + 32;
+            if (!Number.isInteger(kelvTOfah)) {
+                kelvTOfah = kelvTOfah.toFixed(4);
+            }
+            far.value = kelvTOfah;
+        })
+
+    </script>
+</body>
+
+</html>
